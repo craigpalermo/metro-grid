@@ -1,19 +1,29 @@
-head
-  //- vendor scripts
-  script(src='/vendor/jquery/jquery.js')
+html(ng-app='metroApp')
+  head
+    //- vendor scripts
+    script(src='/vendor/jquery/jquery.js')
+    script(src='/vendor/angular/angular.js')
 
-  //- my scripts
-  script(src='index.js')
-  link(rel='stylesheet', href='style.css')
+    //- my scripts
+    script(src='index.js')
+    script(src='controllers.js')
+    link(rel='stylesheet', href='style.css')
 
-  //- misc settings
-  meta(name="viewport", content="width=device-width, user-scalable=no")
+    //- misc settings
+    meta(name="viewport", content="width=device-width, user-scalable=no")
 
-body
+  body(ng-controller='StationListCtrl')
+    div(ng-repeat="(station, lines) in stations")
+      p {{station}}
+      div(ng-repeat="(line,trains) in lines")
+        p {{line}}
+        table
+          tr(ng-repeat="(dest, time) in trains")
+            td {{dest}}
+            td {{time}}
 
-
-  footer
-    p
-      | Crafted by 
-      a(href='https://twitter.com/CasuallyCraig') @CasuallyCraig 
-      | - July 13, 2014
+    footer
+      p
+        | Crafted by 
+        a(href='https://twitter.com/CasuallyCraig') @CasuallyCraig 
+        | - July 13, 2014
