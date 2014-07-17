@@ -3,7 +3,8 @@
 metroApp = angular.module('metroApp', [])
 
 metroApp.controller('StationListCtrl', ($scope, $http) ->
-    apiUrl = 'http://api.wmata.com/StationPrediction.svc/json/GetPrediction/All?api_key=kfgpmgvfgacx98de9q3xazww&callback=JSON_CALLBACK'
+    apiKey = 'yvccw5n4uyw4z8fggkex2h5t'
+    apiUrl = "http://api.wmata.com/StationPrediction.svc/json/GetPrediction/All?api_key=#{apiKey}&callback=JSON_CALLBACK"
 
     setInterval ->
       $http.jsonp(apiUrl).success (data, status) ->
