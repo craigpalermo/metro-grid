@@ -15,7 +15,7 @@ html(ng-app='metroApp')
     link(rel='stylesheet', href='style.css')
 
     //- misc settings
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=0")
 
   body(ng-controller='StationListCtrl')
     div.contain-to-grid.sticky
@@ -35,9 +35,8 @@ html(ng-app='metroApp')
 
     .content
       //- filter input field
-      .row.show-for-small-only
-        div.small-12.columns
-          input#filter(ng-model="stationName", type='text', placeholder="Filter by station name...")
+      div.show-for-small-only
+        input#filter(ng-model="stationName", type='text', placeholder="Filter by station name...")
 
       //- grid boxes go here
       .row
