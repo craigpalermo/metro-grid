@@ -4,11 +4,16 @@
   "private": "true",
   "dependencies": {
     "jquery": "*",
-    "angular": "~1.2.20"
+    "angular": "~1.2.20",
+    "foundation": "*"
   },
   "install": {
     "path": "build/vendor",
     "sources": {
+        "foundation": [
+            "bower_components/foundation/css/*",
+            "bower_components/foundation/js/*"
+        ]
     }
   }
 }

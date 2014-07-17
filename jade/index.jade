@@ -3,6 +3,11 @@ html(ng-app='metroApp')
     //- vendor scripts
     script(src='/vendor/jquery/jquery.js')
     script(src='/vendor/angular/angular.js')
+    script(src='/vendor/foundation/foundation.js')
+
+    //- vendor style
+    link(rel='stylesheet', href='/vendor/foundation/foundation.css')
+    link(rel='stylesheet', href='/vendor/foundation/normalize.css')
 
     //- my scripts
     script(src='index.js')
@@ -10,22 +15,45 @@ html(ng-app='metroApp')
     link(rel='stylesheet', href='style.css')
 
     //- misc settings
-    meta(name="viewport", content="width=device-width, user-scalable=no")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
   body(ng-controller='StationListCtrl')
-    input(ng-model="stationName")
+    div.contain-to-grid.sticky
+      //- top bar
+      nav.top-bar(data-topbar)
+        ul.title-area
+          li.name
+            h1
+              a(href='#') Metro Grid
 
-    div.station(ng-repeat="station in stations | orderBy:'name' | filter:stationName")
-      p {{station.name}}
-      div(ng-repeat="(line,trains) in station.data")
-        p {{line}}
-        table
-          tr(ng-repeat="(dest, time) in trains")
-            td {{dest}}
-            td {{time}}
+        section.top-bar-section.show-for-medium-up
+          ul.right
+            li.has-form
+              div.row.collapse
+                div.small-12.columns
+                  input#filter(ng-model="stationName", type='text', placeholder="Filter by station name...")
+
+    .content
+      //- filter input field
+      .row.show-for-small-only
+        div.small-12.columns
+          input#filter(ng-model="stationName", type='text', placeholder="Filter by station name...")
+
+      //- grid boxes go here
+      .row
+        div.small-12.columns
+          ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
+            li.station(ng-repeat="station in stations | orderBy:'name' | filter:stationName")
+              div.name {{station.name}}
+              div(ng-repeat="(line,trains) in station.data")
+                p.line {{line}}
+                table
+                  tr(ng-repeat="(dest, time) in trains")
+                    td {{dest}}
+                    td {{time}}
 
     footer
-      p
+      div
         | Crafted by 
         a(href='https://twitter.com/CasuallyCraig') @CasuallyCraig 
-        | - July 13, 2014
+        | - July 16, 2014
