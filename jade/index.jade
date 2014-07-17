@@ -13,9 +13,11 @@ html(ng-app='metroApp')
     meta(name="viewport", content="width=device-width, user-scalable=no")
 
   body(ng-controller='StationListCtrl')
-    div(ng-repeat="(station, lines) in stations")
-      p {{station}}
-      div(ng-repeat="(line,trains) in lines")
+    input(ng-model="stationName")
+
+    div.station(ng-repeat="station in stations | orderBy:'name' | filter:stationName")
+      p {{station.name}}
+      div(ng-repeat="(line,trains) in station.data")
         p {{line}}
         table
           tr(ng-repeat="(dest, time) in trains")

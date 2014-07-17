@@ -3,7 +3,9 @@
 metroApp = angular.module('metroApp', [])
 
 metroApp.controller('StationListCtrl', ($scope, $http) ->
-    $http.jsonp('http://api.wmata.com/StationPrediction.svc/json/GetPrediction/All?api_key=kfgpmgvfgacx98de9q3xazww&callback=JSON_CALLBACK').success (data, status) ->
+    apiUrl = 'http://api.wmata.com/StationPrediction.svc/json/GetPrediction/All?api_key=kfgpmgvfgacx98de9q3xazww&callback=JSON_CALLBACK'
+
+    $http.jsonp(apiUrl).success (data, status) ->
         stations = {}
 
         for train in data['Trains']
@@ -23,8 +25,13 @@ metroApp.controller('StationListCtrl', ($scope, $http) ->
             # add cur train's destination and time
             stations[location][line][train['DestinationName']] = min
 
-        console.log stations
-        $scope.stations = stations
+        # convert dictionary to list so we can order and filter results
+        stationList = []
 
-    $scope.bla = "stuff"
+        for k,v of stations
+            station = {'name': k, 'data': v}
+            stationList.push station
+        
+        # add list to scope
+        $scope.stations = stationList
 )
