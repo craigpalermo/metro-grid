@@ -1,0 +1,18 @@
+{
+  "name": "MySite",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "jquery": "*"
+  },
+  "install": {
+    "path": "build/vendor",
+    "sources": {
+        "vex":[
+            "bower_components/vex/js/vex.combined.min.js",
+            "bower_components/vex/css/vex.css",
+            "bower_components/vex/css/vex-theme-wireframe.css"
+        ]
+    }
+  }
+}
