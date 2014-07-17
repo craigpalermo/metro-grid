@@ -3,7 +3,7 @@
 metroApp = angular.module('metroApp', [])
 
 metroApp.controller('StationListCtrl', ($scope, $http) ->
-    apiKey = 'yvccw5n4uyw4z8fggkex2h5t'
+    apiKey = '93wnh5ekynfgx428ghrc5e69'
     apiUrl = "http://api.wmata.com/StationPrediction.svc/json/GetPrediction/All?api_key=#{apiKey}&callback=JSON_CALLBACK"
 
     setInterval ->
@@ -39,5 +39,5 @@ metroApp.controller('StationListCtrl', ($scope, $http) ->
 
           # add list to scope
           $scope.stations = stationList
-    , 2000
+    , 4000
 )
