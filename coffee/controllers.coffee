@@ -39,5 +39,5 @@ metroApp.controller('StationListCtrl', ($scope, $http) ->
 
           # add list to scope
           $scope.stations = stationList
-    , 2500
+    , 20
 )
