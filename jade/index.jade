@@ -8,6 +8,7 @@ html(ng-app='metroApp')
     //- vendor style
     link(rel='stylesheet', href='/vendor/foundation/foundation.css')
     link(rel='stylesheet', href='/vendor/foundation/normalize.css')
+    link(rel='stylesheet', href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css")
 
     //- my scripts
     script(src='index.js')
@@ -34,6 +35,12 @@ html(ng-app='metroApp')
                   input#filter(ng-model="stationName", type='text', placeholder="Filter by station name...")
 
     .content
+      //- loading spinner
+      .row#loading-spinner
+        div.small-12.columns
+          div.small-block-grid-12
+            i.fa.fa-circle-o-notch.fa-spin
+
       //- filter input field
       div.show-for-small-only
         input#filter(ng-model="stationName", type='text', placeholder="Filter by station name...")
@@ -45,11 +52,17 @@ html(ng-app='metroApp')
             li.station(ng-repeat="station in stations | orderBy:'name' | filter:stationName")
               div.name {{station.name}}
               div(ng-repeat="(line,trains) in station.data")
-                p.line {{line}}
-                table
-                  tr(ng-repeat="(dest, time) in trains")
-                    td {{dest}}
-                    td {{time}}
+                table.time-table
+                  thead
+                    tr
+                      th.line(class="line-{{line}}")
+                        | {{line}} 
+                        i.fa.fa-circle
+                      th 
+                  tbody
+                    tr(ng-repeat="(dest, time) in trains")
+                      td {{dest}}
+                      td {{time}}
 
     footer
       div
