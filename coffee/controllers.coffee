@@ -2,11 +2,24 @@
 
 metroApp = angular.module('metroApp', [])
 
-metroApp.controller('StationListCtrl', ($scope, $http) ->
-    apiKey = '93wnh5ekynfgx428ghrc5e69'
+# function to alternate API keys to avoid rate limiting
+getApiKey = ->
+  if Math.floor(Math.random() * 2) + 1 is 1
+    'yvccw5n4uyw4z8fggkex2h5t'  # wmata watch
+  else
+    '8yr3spbddv9eu6tgkxvu9kay'  # wmata watch 2
+
+
+metroApp.controller 'StationListCtrl', ($scope, $http) ->
+    # get API key and construct query URL
+    apiKey = getApiKey()
     apiUrl = "http://api.wmata.com/StationPrediction.svc/json/GetPrediction/All?api_key=#{apiKey}&callback=JSON_CALLBACK"
 
+    # reload data on an interval
     setInterval ->
+      console.log "Loading data..."
+
+      # make API call
       $http.jsonp(apiUrl).success (data, status) ->
           stations = {}
 
@@ -33,11 +46,11 @@ metroApp.controller('StationListCtrl', ($scope, $http) ->
           for k,v of stations
               station = {'name': k, 'data': v}
               stationList.push station
-          
+
           # hide loading spinner
           $('#loading-spinner').hide()
 
           # add list to scope
           $scope.stations = stationList
     , 4000
-)
+
