@@ -62,5 +62,5 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('server', ['shell:runserver', 'watch'])
+    grunt.registerTask('build', ['coffee', 'jade', 'stylus']);
 };

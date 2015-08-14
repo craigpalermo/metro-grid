@@ -2,15 +2,16 @@
   "name": "MySite",
   "version": "0.0.1",
   "private": "true",
+  "main": "server.js",
   "dependencies": {
-    "grunt-contrib-watch": "*",
+    "express": "^4.13.3",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-jade": "*",
     "grunt-contrib-stylus": "*",
-    "grunt-shell": "*"
+    "grunt-contrib-watch": "*",
+    "grunt-shell": "*",
+    "request": "^2.60.0"
   },
-  "scripts": {
-  },
-  "devDependencies": {
-  }
+  "scripts": {},
+  "devDependencies": {}
 }
